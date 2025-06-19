@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="py-4">
+
+  <!-- HERO ---------------------------------------------------------------- -->
+  <section class="dash-hero">
+    <div class="hero-content container">
+      <h1 class="grad-text">Panel de Compatibilidad Ideológica</h1>
+      <p class="lead opacity-75">
+        Visualiza y filtra al instante cómo se distribuyen las coincidencias políticas entre nuestra comunidad.
+      </p>
+      <div class="quick-links">
+        <a href="{% url 'cuestionario' %}" class="ql-btn">Realizar test</a>
+        <a href="{% url 'micuestionario' %}" class="ql-btn">Ver mi cuestionario</a>
+        <a href="#filtros" class="ql-btn">Filtrar resultados</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPI – Big number dentro de tarjeta ----------------------------------- -->
+  <div class="kpi-container">
+    <div class="kpi-card">
+      <span class="kpi-icon bi bi-bar-chart-fill"></span>
+      <div>
+        <span class="kpi-title">Total de encuestas respondidas</span>
+        <span id="bigTotal" class="kpi-value">–</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="help-text">
+    Usa los <strong>filtros</strong> para explorar los resultados por sexo, edad y región.
+  </p>
+
+  <!-- Filtros -------------------------------------------------------------- -->
+  <div id="filtros" class="filter-tabs">
+    <button class="btn-filter active" data-key="general">General</button>
+    <button class="btn-filter"         data-key="sexo">Sexo</button>
+    <button class="btn-filter"         data-key="edad">Edad</button>
+    <button class="btn-filter"         data-key="region">Región</button>
+  </div>
+
+  <!-- Gráficos ------------------------------------------------------------- -->
+  <div class="chart-grid container">
+    <div class="chart-box">
+      <h5 class="mb-2 text-center">Respuestas por Candidato</h5>
+      <div id="barChart" style="height:420px;"></div>
+    </div>
+    <div class="chart-box">
+      <h5 class="mb-2 text-center">Afinidad Promedio (%)</h5>
+      <div id="pieChart" style="height:420px;"></div>
+    </div>
+  </div>
+
+  <!-- Gráfico filtrable combinado ----------------------------------------- -->
+  <section class="container mt-5">
+    <h5 class="text-center mb-3">Usuarios por Candidato (filtros combinados)</h5>
+    <div class="row gx-3 mb-3">
+      <div class="col-md-4">
+        <select id="filterSexo" class="form-select">
+          <option value="">Sexo: Todos</option>
+          <option value="M">Hombres</option>
+          <option value="F">Mujeres</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <select id="filterEdad" class="form-select">
+          <option value="">Edad: Todos</option>
+          <!-- JS llenará rangos -->
+        </select>
+      </div>
+      <div class="col-md-4">
+        <select id="filterRegion" class="form-select">
+          <option value="">Región: Todas</option>
+          <!-- JS llenará regiones -->
+        </select>
+      </div>
+    </div>
+    <div id="barFilterChart" style="height:420px;"></div>
+  </section>
+
+</main>
+{% endblock %}
+
+{% block extra_js %}
+{{ total      | json_script:"total"       }}
+
+{{ bar_general| json_script:"bar-general" }}
+{{ bar_sexo   | json_script:"bar-sexo"    }}
+{{ bar_edad   | json_script:"bar-edad"    }}
+{{ bar_region | json_script:"bar-region"  }}
+
+{{ pie_general| json_script:"pie-general" }}
+{{ pie_sexo   | json_script:"pie-sexo"    }}
+{{ pie_edad   | json_script:"pie-edad"    }}
+{{ pie_region | json_script:"pie-region"  }}
+
+{{ pref_data  | json_script:"pref-data"   }}
+
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<script src="{% static 'js/dashboard.js' %}?v=2" defer></script>
+{% endblock %}

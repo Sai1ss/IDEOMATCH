@@ -1,0 +1,216 @@
+/* ---------- Variables ---------- */
+:root{
+  --ideomatch-red:#d90429;
+  --ideomatch-dark:#131316;
+  --ideomatch-light-gray:#e0e0e0;
+  --ideomatch-text-light:#fff;
+}
+
+/* ---------- Reset básico ---------- */
+body,h1,h2,h3,h4,h5,h6,p,ul{margin:0;padding:0}
+a{text-decoration:none}a:hover{text-decoration:underline}
+
+/* ---------- NAVBAR ---------- */
+.navbar{
+  background:var(--ideomatch-dark)!important;
+  padding:1rem 0;box-shadow:0 1px 4px rgba(0,0,0,.25)
+}
+.navbar-dark .navbar-toggler-icon{
+  background-image:url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28 255,255,255, 1%29' stroke-width='2' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+.navbar-nav .nav-link{
+  color:var(--ideomatch-text-light);font-size:1.1rem;padding:.65rem 1rem
+}
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active{color:var(--ideomatch-red)}
+
+/* ---------- Botón principal (máxima prioridad) ---------- */
+.btn-micuestionario{
+  background:var(--ideomatch-red);color:#fff;font-weight:700;
+  padding:8px 26px;border:none;border-radius:30px;
+  box-shadow:0 4px 12px rgba(217,4,41,.6);
+  letter-spacing:.04em;transition:background .3s,box-shadow .3s,transform .2s
+}
+.btn-micuestionario:hover{
+  background:#a20318;box-shadow:0 6px 16px rgba(162,3,24,.8);transform:translateY(-2px)
+}
+
+/* ---------- Botón secundario (outline) ---------- */
+.btn-ideomatch-secondary{
+  color:#fff;border:2px solid var(--ideomatch-red);background:transparent;
+  padding:8px 24px;border-radius:30px;font-weight:600;
+  transition:background .3s,color .3s,transform .2s
+}
+.btn-ideomatch-secondary:hover{
+  background:var(--ideomatch-red);color:#fff;transform:translateY(-2px)
+}
+
+/* Responsive: botones full width en menú colapsado */
+@media(max-width:991.98px){
+  .navbar .btn{width:100%;text-align:center}
+  .navbar .btn:not(:last-child){margin-bottom:.5rem}
+}
+
+
+
+
+/* Responsive footer */
+@media (max-width: 767px) {
+  .footer-col {
+    text-align: center;
+  }
+  .site-footer .row + .row {
+    margin-top: 20px;
+  }
+}
+
+.navbar .btn {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease-in-out;
+  border-width: 2px;
+}
+
+.navbar .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo para el botón "Ver mi cuestionario" en el navbar */
+.btn-micuestionario {
+  background-color: #d3061e;
+  color: white;
+  font-weight: 700;
+  padding: 8px 24px;
+  border-radius: 12px; 
+  border: none;
+  box-shadow: 0 4px 10px rgba(211, 6, 30, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+/* A */
+.btn-micuestionario::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  animation: shine 2.5s infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes shine {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+
+.btn-micuestionario:hover,
+.btn-micuestionario:focus {
+  background-color: #a20318;
+  box-shadow: 0 6px 14px rgba(162, 3, 24, 0.9);
+  animation-play-state: paused; 
+  color: white;
+  text-decoration: none;
+}
+
+/* --- Botón contorno claro solo para “Ver Candidatos” --- */
+.btn-candidatos{
+  color:#fff;
+  border:2px solid #7f8c8d;          
+  background:transparent;
+  padding:8px 24px;
+  border-radius:30px;
+  font-weight:600;
+  transition:background .25s,color .25s,transform .2s;
+}
+.btn-candidatos:hover,
+.navbar .nav-link.active.btn-candidatos{
+  background:#fff;
+  color:#000;
+  transform:translateY(-2px);
+}
+
+
+
+/* Footer */
+.site-footer {
+  background-color: var(--ideomatch-dark);
+  color: rgba(255,255,255,0.8);
+  padding: 60px 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.95rem;
+}
+.site-footer h5 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+.site-footer p {
+  line-height: 1.6;
+}
+.footer-col {
+  margin-bottom: 30px;
+}
+.footer-links,
+.social-icons {
+  list-style: none;
+  padding: 0;
+}
+.footer-links li,
+.social-icons li {
+  margin-bottom: 12px;
+}
+.footer-links a,
+.social-icons a {
+  color: rgba(255,255,255,0.8);
+  transition: color 0.3s ease;
+}
+.footer-links a:hover,
+.social-icons a:hover {
+  color: var(--ideomatch-red);
+}
+.social-icons i {
+  margin-right: 8px;
+  font-size: 1.1rem;
+  vertical-align: middle;
+}
+.site-footer hr {
+  border-color: rgba(255,255,255,0.1);
+  margin: 30px 0;
+}
+.site-footer .copyright {
+  margin: 0;
+  color: rgba(255,255,255,0.6);
+}
+
+/* Responsive footer */
+@media (max-width: 767px) {
+  .footer-col {
+    text-align: center;
+  }
+  .site-footer .row + .row {
+    margin-top: 20px;
+  }
+}

@@ -1,0 +1,19 @@
+/* Hidden helper */
+.hidden { display: none !important; }
+
+/* Tabla */
+#tabla-preguntas tbody tr:hover {
+  background: rgba(217,4,41,0.05);
+}
+
+/* Formulario */
+#form-pregunta-container {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+#form-pregunta-container h4 {
+  margin-bottom: 1.5rem;
+}
+.hidden {
+  display: none !important;
+}

@@ -1,0 +1,529 @@
+/* ==========================================================
+   IdeoMatch · home.css
+   Hoja de estilos principal para la página de inicio.
+   ========================================================== */
+
+/* -------------------------
+   1. Variables de color
+------------------------- */
+:root {
+  --ideomatch-red: #d90429;
+  --ideomatch-dark: #2c3e50;
+  --ideomatch-light-gray: #e0e0e0;
+  --ideomatch-text: #ffffff;
+  --ideomatch-text-dark: #34495e;
+}
+
+/* -------------------------
+   2. Reset y tipografía base
+------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--ideomatch-light-gray);
+  color: var(--ideomatch-text-dark);
+}
+
+/* -------------------------
+   3. Hero principal
+------------------------- */
+.hero-section {
+  background: url("../images/F_IDEOMATCH.JPG") center/cover fixed;
+  height: 100vh;
+  position: relative;
+}
+
+.hero-section .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-logo {
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 1.5rem;
+}
+
+.hero-content .lead {
+  font-size: 1.5rem;
+  color: #eee;
+  margin-bottom: 2rem;
+}
+
+/* -------------------------
+   4. Botón principal
+------------------------- */
+.btn-ideomatch-primary {
+  background: var(--ideomatch-red);
+  color: #fff;
+  padding: 18px 45px;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-ideomatch-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(217, 4, 41, 0.4);
+}
+
+.btn-ideomatch-primary i {
+  margin-left: 0.5rem;
+}
+
+/* -------------------------
+   5. Sección gris reutilizable
+------------------------- */
+.section-gray {
+  background-color: var(--ideomatch-light-gray);
+}
+
+/* -------------------------
+   6. Títulos de sección
+------------------------- */
+.section-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  color: var(--ideomatch-dark);
+}
+
+/* -------------------------
+   7. Cards generales
+------------------------- */
+.card {
+  background: #fff;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e0e0e0;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  border-color: var(--ideomatch-red);
+}
+
+.card .card-body {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card .card-body > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+/* Mantiene proporciones de imágenes en cards */
+.card img {
+  aspect-ratio: 16/9;
+  object-position: center;
+}
+
+/* -------------------------
+   8. Card destacada (Cuestionario)
+------------------------- */
+.card-cuestionario.highlighted {
+  border: 2px solid var(--ideomatch-red);
+  border-radius: 12px;
+  background: rgba(217, 4, 41, 0.05);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(217, 4, 41, 0.2);
+}
+
+/* Capa decorativa diagonal en la card destacada */
+.card-cuestionario.highlighted::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.1) 75%,
+    transparent 75%
+  );
+  background-size: 4px 4px;
+  transform: rotate(30deg);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card-cuestionario.highlighted .card-title {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: var(--ideomatch-red);
+}
+
+/* Botón principal dentro de la card destacada */
+.card-cuestionario.highlighted .btn-ideomatch-primary {
+  background: #fff;
+  color: var(--ideomatch-red);
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+/* -------------------------
+   9. Cards específicas (Servel y Métricas)
+------------------------- */
+.card-servel, .card-metricas {
+  border-top: 4px solid var(--ideomatch-red);
+}
+
+/* -------------------------
+   10. Botones secundarios
+------------------------- */
+.btn-custom-secondary {
+  background: var(--ideomatch-red);
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 50px;
+  transition: background 0.3s;
+  border: none;
+  font-weight: 600;
+  margin-top: auto;
+}
+
+.btn-custom-secondary:hover {
+  background: #a8031f;
+}
+
+/* -------------------------
+   11. Módulos y textos
+------------------------- */
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--ideomatch-dark);
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.module-badge {
+  background-color: var(--ideomatch-red);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  align-self: flex-start;
+  margin-bottom: 1rem;
+}
+
+.feature-list {
+  margin: 1rem 0;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.feature-item i {
+  color: var(--ideomatch-red);
+  margin-right: 0.5rem;
+}
+
+/* -------------------------
+   12. Imagen SERVEL
+------------------------- */
+.servel-logo {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(217, 4, 41, 0.1);
+  border-radius: 8px;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  width: 100%;
+}
+
+.servel-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* -------------------------
+   13. Iconos métricas
+------------------------- */
+.metric-icon {
+  font-size: 2.5rem;
+  color: var(--ideomatch-red);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* -------------------------
+   14. Parallax secundario
+------------------------- */
+.secondary-parallax {
+  background: url("../images/landscape.jpg") center/cover fixed;
+  height: 60vh;
+  position: relative;
+}
+
+.secondary-parallax .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.parallax-content {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  text-align: center;
+}
+
+.parallax-content h2 {
+  font-size: 2.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.parallax-content p {
+  font-size: 1.2rem;
+}
+
+/* -------------------------
+   15. Carrusel de candidatos
+------------------------- */
+.candidates-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.candidates-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+.candidate-card {
+  flex: 0 0 auto;
+  width: 180px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin-right: 1rem;
+}
+
+.candidate-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.candidate-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.candidate-card h5 {
+  margin: 0.5rem 0 0.25rem;
+  font-size: 1rem;
+}
+
+.candidate-card .party {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+/* -------------------------
+   16. Botones de scroll en carrusel
+------------------------- */
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+  z-index: 10;
+}
+
+.scroll-btn:hover {
+  background: #a8031f;
+}
+
+.scroll-btn.left {
+  left: -10px;
+}
+
+.scroll-btn.right {
+  right: -10px;
+}
+
+/* -------------------------
+   17. Banner de bienvenida
+------------------------- */
+.welcome-banner {
+  background-color: var(--ideomatch-red);
+  padding: 14px 0;
+  width: 100%;
+  margin-top: 86px; /* evita que quede debajo del navbar fijo */
+  z-index: 10;
+  border-bottom: 3px solid var(--ideomatch-red);
+}
+
+.welcome-message {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* -------------------------
+   18. ¿Sabías que…? (Hero)
+------------------------- */
+.facts-home {
+  background: transparent;
+}
+
+/* Tarjeta de "¿Sabías que…?" */
+.fact-home-box {
+  max-width: 720px;
+  min-height: 120px;
+  padding: 2rem;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: #1a1a1d;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(6px) saturate(120%);
+  border-left: 4px solid #d90429;
+  border-radius: 18px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity .4s ease;
+}
+
+/* Título de la sección "¿Sabías que…?" */
+.sabias-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: .4px;
+  text-shadow: 0 2px 6px rgba(0,0,0,.5);
+  margin-bottom: 1.2rem;
+}
+
+/* -------------------------
+   19. Animaciones de scroll
+------------------------- */
+.animated-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all .6s ease;
+}
+.animated-on-scroll.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.delay-1 { transition-delay: .15s; }
+.delay-2 { transition-delay: .3s; }
+
+/* -------------------------
+   20. Responsive para "¿Sabías que…?"
+------------------------- */
+@media (max-width:576px) {
+  .fact-home-box {
+    padding: 1.3rem;
+    font-size: 1rem;
+  }
+}
+
+/* -------------------------
+   21. Swiper de candidatos (carrusel móvil)
+------------------------- */
+.candidatos-swiper {
+  padding: 10px 0 48px;
+}
+
+.candidatos-swiper .swiper-slide {
+  width: 190px;
+}
+
+.candidatos-swiper .candidate-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.08);
+  overflow: hidden;
+  transition: transform .28s, box-shadow .28s;
+}
+.candidatos-swiper .candidate-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,.15);
+}
+.candidatos-swiper .candidate-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+.candidatos-swiper .candidate-card h5 {
+  margin: .65rem 0 .2rem;
+  font-size: 1rem;
+  text-align: center;
+}
+.candidatos-swiper .candidate-card .party {
+  font-size: .85rem;
+  color: #7f8c8d;
+  text-align: center;
+  margin-bottom: .9rem;
+}
+
+/* Bullets del swiper */
+.candidatos-swiper .swiper-pagination-bullet {
+  background: #fff;
+  opacity: .45;
+}
+.candidatos-swiper .swiper-pagination-bullet-active {
+  background: var(--ideomatch-red);
+  opacity: 1;
+}

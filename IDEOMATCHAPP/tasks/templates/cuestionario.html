@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/cuestionario.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="container py-5">
+  {% if messages %}
+    {% for m in messages %}
+      <div class="alert alert-{{ m.tags }} shadow-sm fade show" role="alert">
+        {{ m }} <button class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <section class="intro-quiz text-center mb-5">
+    <div class="icon-circle mx-auto mb-3">
+      <i class="bi bi-clipboard-check fs-3"></i>
+    </div>
+    <h1 class="quiz-title fw-bold">
+      Test de Compatibilidad&nbsp;2025
+    </h1>
+    <p class="lead mt-2">
+      Responde <strong>11 preguntas</strong> sobre economía,&nbsp;sociedad y
+      medioambiente. Al final descubrirás con qué candidato
+      compartes más afinidad.
+    </p>
+  </section>
+
+  {% if ya_respondido %}
+    <p class="text-center mb-4 fw-semibold">
+      Ya respondiste este cuestionario. Se muestra tu última actualización.
+    </p>
+    <div class="text-center mb-5">
+      <a href="{% url 'cuestionario' %}?new=1" class="btn btn-ideomatch-primary">
+        Realizar nuevamente el cuestionario
+      </a>
+    </div>
+  {% endif %}
+
+  {% if preguntas_data %}
+    <div class="progress progress-ideomatch mb-5" role="progressbar">
+      <div id="progress-bar" class="progress-bar"></div>
+    </div>
+
+    <form method="post" novalidate id="quiz-form">
+      {% csrf_token %}
+      {% for item in preguntas_data %}
+        <section class="pregunta-block glass-card {% if not forloop.first %}d-none{% endif %}">
+          <h5 class="pregunta-text mb-4">{{ item.pregunta.texto }}</h5>
+          <div class="alt-container">
+            {% for alt in item.alternativas %}
+              <label class="alt-radio">
+                <input type="radio"
+                       name="pregunta_{{ item.pregunta.id }}"
+                       value="{{ alt.id }}"
+                       required>
+                <span class="custom-dot"></span> {{ alt.texto }}
+              </label>
+            {% endfor %}
+          </div>
+        </section>
+      {% endfor %}
+
+      <div class="wizard-controls mt-4">
+        <button type="button" id="btn-prev" class="btn-nav border-0" disabled>
+          <i class="bi bi-arrow-left"></i> Anterior
+        </button>
+        <button type="button" id="btn-next" class="btn-nav btn-primary">
+          Siguiente <i class="bi bi-arrow-right"></i>
+        </button>
+        <button type="submit" id="btn-submit" class="btn-nav btn-success d-none">
+          Enviar respuestas <i class="bi bi-check-circle"></i>
+        </button>
+      </div>
+    </form>
+  {% endif %}
+
+  {% if resultados %}
+    <hr class="my-5">
+
+    <section class="resultado-card glass-card mx-auto">
+      <h3 class="text-center mb-4 fw-bold">Afinidad con los candidatos</h3>
+      <ul class="list-group lista-afinidades">
+        {% for r in resultados %}
+          <li class="list-group-item afinidad-item {% if r.top %}top{% endif %}"
+              style="--pct:{{ r.pct|default:'0'|floatformat:'1'|cut:','|cut:' ' }};">
+            <span class="afin-label">{{ r.nombre }}</span>
+            <span class="afin-bar"></span>
+            <span class="badge-afinidad {% if r.top %}top{% elif r.pct >= 50 %}alto{% else %}bajo{% endif %}">
+              {{ r.pct|floatformat:"1" }} %
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
+      <div class="text-center mt-4">
+        <a href="{% url 'candidatos' %}" class="btn btn-candidatos">
+          <i class="bi bi-person-lines-fill me-1"></i>
+          Ver trayectoria de todos los candidatos
+        </a>
+      </div>
+    </section>
+  {% endif %}
+</main>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'js/cuestionario.js' %}"></script>
+{% endblock %}

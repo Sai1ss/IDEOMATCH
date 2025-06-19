@@ -1,0 +1,8 @@
+django
+openpyxl
+pandas
+requests
+six
+django-widget-tweaks
+psycopg2-binary
+plotly

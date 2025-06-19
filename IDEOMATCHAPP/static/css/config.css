@@ -1,0 +1,69 @@
+:root {
+  --ideomatch-red: #d90429;
+  --ideomatch-dark: #2c3e50;
+  --ideomatch-light-gray: #e0e0e0;
+  --ideomatch-text-light: #ffffff;
+  --ideomatch-text-muted: #7f8c8d;
+}
+
+body {
+  background-image: url('../images/plaza_armas.jpg');
+  background-size: cover;
+  background-position: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.config-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  border: none;
+}
+
+.config-card h2 {
+  color: var(--ideomatch-red);
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--ideomatch-dark);
+}
+
+.form-control, .form-select {
+  border-radius: 10px;
+  border: 1px solid var(--ideomatch-light-gray);
+  padding: 10px 15px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--ideomatch-red);
+  box-shadow: 0 0 5px rgba(217, 4, 41, 0.5);
+}
+
+.btn-ideomatch-primary {
+  background-color: var(--ideomatch-red);
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 30px;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-ideomatch-primary:hover {
+  background-color: #b0031f;
+  transform: translateY(-2px);
+}
+
+.btn-outline-danger:hover,
+.btn-outline-secondary:hover {
+  transform: scale(1.02);
+  background-color: #f8f9fa;
+}
+
+@media (max-width: 768px) {
+  .config-card {
+    padding: 2rem 1rem;
+  }
+}

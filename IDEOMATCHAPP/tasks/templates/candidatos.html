@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/candidatos.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="candidatos-hero">
+  <div class="container">
+    <h1>Conoce a los Candidatos Presidenciales</h1>
+    <p>
+      Explora el perfil de cada aspirante al sillón presidencial del 2025.
+      Revisa sus ideas, trayectorias y partidos políticos para tomar
+      una decisión informada.
+    </p>
+  </div>
+</section>
+
+<div class="carousel-wrapper">
+  <button id="prevBtn" class="carousel-nav left" aria-label="Anterior">&#8592;</button>
+
+  <div class="carousel-track-container">
+    <div class="carousel-track">
+      {# ——— Duplica/edita estos bloques si agregas más candidatos ——— #}
+
+      <div class="candidate-card"
+           data-name="Carolina Tohá"
+           data-partido="Partido Socialista"
+           data-trayectoria="Exalcaldesa de Santiago y exministra. Abogada con larga trayectoria en política urbana y derechos civiles."
+           data-propuesta="Reformas sociales profundas, énfasis en seguridad ciudadana y descentralización del poder."
+           data-liderazgo="Cercano, técnico y orientado al consenso."
+           data-img="{% static 'images/carolina_toha.jpg' %}">
+        <img src="{% static 'images/carolina_toha.jpg' %}" alt="Carolina Tohá">
+        <div class="card-body"><h5>Carolina Tohá</h5><p>Partido Socialista</p></div>
+      </div>
+
+      <div class="candidate-card"
+           data-name="Evelyn Matthei"
+           data-partido="UDI"
+           data-trayectoria="Economista, exministra de Trabajo y actual alcaldesa de Providencia. Figura histórica de la derecha."
+           data-propuesta="Reactivación económica, control migratorio y seguridad pública."
+           data-liderazgo="Pragmático, firme y enfocado en la gestión."
+           data-img="{% static 'images/evelyn_matthei.jpeg' %}">
+        <img src="{% static 'images/evelyn_matthei.jpeg' %}" alt="Evelyn Matthei">
+        <div class="card-body"><h5>Evelyn Matthei</h5><p>UDI</p></div>
+      </div>
+
+      <div class="candidate-card"
+           data-name="Franco Parisi"
+           data-partido="Partido de la Gente"
+           data-trayectoria="Economista y docente. Conocido por sus campañas digitales y estilo independiente."
+           data-propuesta="Menos impuestos, digitalización estatal y libertad económica."
+           data-liderazgo="Disruptivo, directo y enfocado en las redes sociales."
+           data-img="{% static 'images/franco_parisi.jpeg' %}">
+        <img src="{% static 'images/franco_parisi.jpeg' %}" alt="Franco Parisi">
+        <div class="card-body"><h5>Franco Parisi</h5><p>Partido de la Gente</p></div>
+      </div>
+
+      <div class="candidate-card"
+           data-name="José Antonio Kast"
+           data-partido="Partido Republicano"
+           data-trayectoria="Abogado y exdiputado. Fundador del Partido Republicano. Candidato presidencial en 2021."
+           data-propuesta="Orden, control migratorio, defensa de valores tradicionales."
+           data-liderazgo="Autoritario, conservador y enfocado en seguridad."
+           data-img="{% static 'images/jose_antonio_kast.jpg' %}">
+        <img src="{% static 'images/jose_antonio_kast.jpg' %}" alt="José Antonio Kast">
+        <div class="card-body"><h5>José Antonio Kast</h5><p>Partido Republicano</p></div>
+      </div>
+
+      <div class="candidate-card"
+           data-name="Jeannette Jara"
+           data-partido="Partido Comunista de Chile"
+           data-trayectoria="Administradora pública y abogada. Ex Ministra del Trabajo y Previsión Social."
+           data-propuesta="Crecimiento con distribución, derechos sociales garantizados y seguridad integral."
+           data-liderazgo="Diálogo, consensos, cercanía con la ciudadanía."
+           data-img="{% static 'images/jeannette_jar.jpg' %}">
+        <img src="{% static 'images/jeannette_jar.jpg' %}" alt="Jeannette Jara">
+        <div class="card-body"><h5>Jeannette Jara</h5><p>Partido Comunista</p></div>
+      </div>
+
+      <div class="candidate-card"
+           data-name="Jaime Mulet"
+           data-partido="FRVS"
+           data-trayectoria="Abogado y político regionalista. Exdiputado y defensor del medioambiente."
+           data-propuesta="Descentralización, cuidado del medioambiente, participación local."
+           data-liderazgo="Territorial, conciliador, con foco ciudadano."
+           data-img="{% static 'images/jaime_mulet.webp' %}">
+        <img src="{% static 'images/jaime_mulet.webp' %}" alt="Jaime Mulet">
+        <div class="card-body"><h5>Jaime Mulet</h5><p>FRVS</p></div>
+      </div>
+
+      <div class="candidate-card"
+           data-name="Gonzalo Winter"
+           data-partido="Revolución Democrática"
+           data-trayectoria="Diputado y activista político. Abogado. Parte del Frente Amplio desde sus inicios."
+           data-propuesta="Derechos sociales garantizados, educación pública fuerte, Estado presente."
+           data-liderazgo="Juventud, renovación y enfoque transformador."
+           data-img="{% static 'images/gonzalo_winter.png' %}">
+        <img src="{% static 'images/gonzalo_winter.png' %}" alt="Gonzalo Winter">
+        <div class="card-body"><h5>Gonzalo Winter</h5><p>Revolución Democrática</p></div>
+      </div>
+
+      <div class="candidate-card"
+           data-name="Johannes Kaiser"
+           data-partido="Independiente / Republicano"
+           data-trayectoria="Youtuber, comentarista político y diputado. Polémico por sus opiniones extremas."
+           data-propuesta="Reducción del Estado, portación de armas, libertad total de expresión."
+           data-liderazgo="Provocador, radical, anticomunista."
+           data-img="{% static 'images/johannes_kaiser.jpg' %}">
+        <img src="{% static 'images/johannes_kaiser.jpg' %}" alt="Johannes Kaiser">
+        <div class="card-body"><h5>Johannes Kaiser</h5><p>Independiente</p></div>
+      </div>
+
+    </div>
+  </div>
+
+  <button id="nextBtn" class="carousel-nav right" aria-label="Siguiente">&#8594;</button>
+</div>
+
+
+
+<!--- Nuevo panel de información dinámica -->
+<section class="candidate-info-wrapper mt-4">
+  <div id="candidateInfo" class="candidate-info container"></div>
+</section>
+
+
+
+
+<!-- ① Pasos IdeoMatch -->
+<section class="steps-im container my-5">
+  <div class="row text-center gy-4">
+    <div class="col-md-4">
+      <div class="step-card shadow-sm p-4 h-100">
+        <i class="bi bi-search fs-2 text-primary mb-3"></i>
+        <h5 class="mb-2">Explora candidatos</h5>
+        <p class="small">Navega con las flechas y abre el perfil completo con un clic.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="step-card shadow-sm p-4 h-100">
+        <i class="bi bi-question-circle fs-2 text-danger mb-3"></i>
+        <h5 class="mb-2">Responde el cuestionario</h5>
+        <p class="small">15 preguntas que abarcan economía, sociedad y medioambiente.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="step-card shadow-sm p-4 h-100">
+        <i class="bi bi-bar-chart-line fs-2 text-success mb-3"></i>
+        <h5 class="mb-2">Descubre tu afinidad</h5>
+        <p class="small">Comparamos tus respuestas con todos los candidatos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ② Sabías que… -->
+<section class="facts-im py-5">
+  <div class="container">
+    <h4 class="text-center mb-4 fw-semibold">¿Sabías que…?</h4>
+    <div id="factBox" class="fact-box mx-auto">
+      <!-- JS inserta texto -->
+    </div>
+  </div>
+</section>
+
+<!-- ③ CTA -->
+<section class="cta-im text-center text-white py-5">
+  <div class="container">
+    <h3 class="fw-bold mb-3">¿Listo para encontrar tu coincidencia perfecta?</h3>
+    <a href="{% url 'cuestionario' %}" class="btn btn-light btn-lg px-5 shadow-sm">
+      ¡Calcular mi afinidad política!
+    </a>
+  </div>
+</section>
+
+
+{# ——— Modal ——— #}
+<div id="candidateModal" class="modal-overlay">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <div class="modal-header">
+      <img id="modalImage" src="" alt="Candidato">
+      <div>
+        <h2 id="modalName"></h2>
+        <p class="text-muted" id="modalPartido"></p>
+      </div>
+    </div><hr>
+    <div class="modal-section"><h4>Trayectoria y formación</h4><p id="modalTrayectoria"></p></div>
+    <div class="modal-section"><h4>Propuesta de gobierno</h4><p id="modalPropuesta"></p></div>
+    <div class="modal-section"><h4>Estilo de liderazgo</h4><p id="modalLiderazgo"></p></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'js/candidatos.js' %}" defer></script>
+{% endblock %}
+

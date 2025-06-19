@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}            {# ← ¡Añade esto! #}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/preguntas.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Gestión de Preguntas</h2>
+    <button id="btn-nueva" class="btn btn-success">+ Nueva Pregunta</button>
+  </div>
+
+  {# — LISTADO — #}
+  <table class="table table-striped" id="tabla-preguntas">
+    <thead>
+      <tr>
+        <th style="width:80px">Orden</th>
+        <th>Texto</th>
+        <th style="width:180px">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in preguntas %}
+      <tr data-id="{{ p.pk }}">
+        <td class="td-orden">{{ p.orden }}</td>
+        <td class="td-texto">{{ p.texto|escape }}</td>
+        <td>
+          <button class="btn btn-sm btn-primary btn-editar">Editar</button>
+          <button class="btn btn-sm btn-danger btn-borrar">Borrar</button>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="3" class="text-center">No hay preguntas.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {# — FORMULARIO (oculto por defecto) — #}
+  <div class="card p-4 mt-4 hidden" id="form-pregunta-container">
+    <h4 id="form-titulo">Crear Pregunta</h4>
+    <form id="form-pregunta" novalidate>
+      {% csrf_token %}
+      <input type="hidden" name="pk" id="inp-pk" value="">
+      <div class="mb-3">
+        <label for="inp-orden">Orden</label>
+        <input type="number" class="form-control" id="inp-orden" name="orden">
+        <div class="invalid-feedback" id="err-orden"></div>
+      </div>
+      <div class="mb-3">
+        <label for="inp-texto">Texto</label>
+        <textarea class="form-control" id="inp-texto" name="texto" rows="3"></textarea>
+        <div class="invalid-feedback" id="err-texto"></div>
+      </div>
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-secondary me-2" id="btn-cancelar">Cancelar</button>
+        <button type="submit" class="btn btn-primary" id="btn-guardar">Crear</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'js/preguntas.js' %}"></script>
+{% endblock %}

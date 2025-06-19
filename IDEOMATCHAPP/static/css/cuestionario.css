@@ -1,0 +1,363 @@
+/* ────────────────────────────────────────────────────────────────
+   IDEOMATCH · CUESTIONARIO
+──────────────────────────────────────────────────────────────────*/
+
+/* ═══════════ 0. SISTEMA DE COLORES & RESET ═════════════════════ */
+/* Paleta de colores y reset de estilos base */
+:root {
+  /* Marca */
+  --im-red: #d90429;
+  --im-red-light: #ff5c5c;
+
+  /* Neutros */
+  --g-100: #f6f7f8;
+  --g-200: #e3e3e3;
+  --g-500: #6c757d;
+  --g-700: #374151;
+  --g-900: #1a1a1d;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+p, ul {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", "Open Sans", sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ═══════════ 1. ENCABEZADO PRINCIPAL ═══════════════════════════ */
+/* Título destacado con gradiente */
+.cta-title span {
+  background: linear-gradient(90deg, var(--im-red), var(--im-red-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ═══════════ 2. TARJETA “GLASS” + ANIMACIONES ══════════════════ */
+/* Tarjeta con efecto glass y animación de entrada */
+.glass-card {
+  animation: fadeUp .3s ease both;
+  backdrop-filter: blur(10px) saturate(140%);
+  background: rgba(255,255,255,.18);
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0,0,0,.18);
+  padding: 2.5rem;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════ 3. BARRA DE PROGRESO ══════════════════════════════ */
+/* Barra de progreso visual para cuestionario */
+.progress-ideomatch {
+  background: var(--g-200);
+  border-radius: 6px;
+  height: 12px;
+  overflow: hidden;
+}
+.progress-ideomatch .progress-bar {
+  background: linear-gradient(90deg, var(--im-red), var(--im-red-light));
+  box-shadow: 0 0 10px rgba(217,4,41,.5);
+  transition: width .4s ease;
+}
+
+/* ═══════════ 4. PREGUNTA + ALTERNATIVAS ═══════════════════════ */
+/* Bloque de pregunta con brillo animado */
+.pregunta-block::after {
+  border-radius: inherit;
+  content: '';
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: -70%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(120deg,
+    transparent 0%,
+    rgba(255,255,255,.35) 45%,
+    rgba(255,255,255,.35) 55%,
+    transparent 100%);
+  transform: skewX(-20deg);
+  transition: opacity .35s ease, left .7s ease;
+}
+
+/* Texto de la pregunta */
+.pregunta-text {
+  color: var(--g-700);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Contenedor de alternativas */
+.alt-container {
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+}
+
+/* Alternativa tipo radio personalizada */
+.alt-radio {
+  cursor: pointer;
+  font-weight: 500;
+  padding-left: 38px;
+  position: relative;
+  user-select: none;
+}
+.alt-radio input {
+  opacity: 0;
+  position: absolute;
+}
+.custom-dot {
+  border: 3px solid var(--im-red);
+  border-radius: 50%;
+  height: 22px;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background .25s, box-shadow .25s;
+  width: 22px;
+}
+.alt-radio input:checked ~ .custom-dot {
+  background: var(--im-red);
+  box-shadow: 0 0 6px rgba(217,4,41,.55);
+}
+.alt-radio:hover .custom-dot {
+  box-shadow: 0 0 4px rgba(217,4,41,.4);
+}
+
+/* ═══════════ 5. CONTROLES (prev / next / submit) ══════════════ */
+/* Botones de navegación del cuestionario */
+.wizard-controls .btn-nav {
+  border-radius: 30px;
+  font-weight: 700;
+  padding: .6rem 1.6rem;
+  transition: background .2s, transform .2s;
+}
+.btn-nav.btn-primary {
+  background: var(--im-red);
+  color: #fff;
+}
+.btn-nav.btn-primary:hover {
+  background: #b50322;
+}
+.btn-nav.btn-success {
+  background: #28a745;
+  border: none;
+}
+.btn-nav.btn-success:hover {
+  background: #208537;
+}
+
+/* ═══════════ 6. RESULTADOS / BADGES DE AFINIDAD ═══════════════ */
+/* Badges de afinidad para resultados */
+.badge-afinidad {
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 600;
+  min-width: 60px;
+  padding: 6px 12px;
+}
+.badge-afinidad.alto {
+  background: #28a745;
+}
+.badge-afinidad.bajo {
+  background: #dc3545;
+}
+.badge-afinidad.top {
+  background: #28a745;
+  box-shadow: 0 0 12px rgba(40,167,69,.8);
+  transform: scale(1.05);
+}
+
+/* Lista de afinidades */
+.lista-afinidades .list-group-item {
+  background: rgba(255,255,255,.65);
+  backdrop-filter: blur(6px);
+  border: none;
+  font-weight: 600;
+  gap: 1rem;
+  padding: 14px 20px;
+}
+
+/* ═══════════ 7. RESPONSIVE ═══════════════════════════════════ */
+/* Ajustes para pantallas pequeñas */
+@media (max-width:576px) {
+  .glass-card {
+    padding: 1.6rem;
+  }
+  .wizard-controls {
+    align-items: stretch;
+    flex-direction: column;
+    gap: .75rem;
+  }
+}
+
+/* ═══════════ 2-bis. BRILLO y ANIMACIONES SUAVES ════════════════ */
+/* Brillo diagonal animado reutilizado de las candidate-cards */
+.pregunta-block::after {
+  animation: shimmer 4s infinite;
+  background: linear-gradient(120deg,
+    transparent 10%, rgba(255,255,255,.35) 45%,
+    rgba(255,255,255,.35) 55%, transparent 90%);
+  border-radius: inherit;
+  content: '';
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  transform: translateX(-120%) skewX(-20deg);
+}
+@keyframes shimmer {
+  0%   { transform: translateX(-120%) skewX(-20deg);}
+  100% { transform: translateX(120%)  skewX(-20deg);}
+}
+
+/* Animaciones de entrada/salida suaves */
+@keyframes gentleIn {
+  from { opacity: 0; transform: translateY(30px);}
+  to   { opacity: 1; transform: translateY(0);}
+}
+@keyframes gentleOut {
+  from { opacity: 1; transform: translateY(0);}
+  to   { opacity: 0; transform: translateY(-30px);}
+}
+
+/* ═══════════ 8. NUEVO HEADER & DETALLES DECORATIVOS ═════════════ */
+/* Icono circular en la introducción */
+.intro-quiz .icon-circle {
+  align-items: center;
+  background: var(--im-red);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(217,4,41,.45);
+  color: #fff;
+  display: flex;
+  height: 72px;
+  justify-content: center;
+  width: 72px;
+}
+
+/* Título principal del quiz */
+.quiz-title {
+  background: linear-gradient(90deg, var(--im-red), var(--im-red-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2.2rem;
+}
+
+/* Separador ondulado decorativo */
+.wave-divider {
+  background:
+    url("data:image/svg+xml,%3Csvg width='100%25' height='100' preserveAspectRatio='none' viewBox='0 0 1600 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,30 C300,100 600,0 900,50 C1200,100 1500,30 1600,60 L1600,100 L0,100 Z' fill='%23d90429' fill-opacity='0.05'/%3E%3C/svg%3E")
+    center/cover no-repeat;
+  height: 70px;
+  opacity: .8;
+  width: 100%;
+}
+
+/* Fondo sutil en la zona de preguntas */
+body {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,.00) 0 6px,
+      rgba(0,0,0,.02) 6px 12px
+    ),
+    var(--g-100);
+}
+
+/* Sombra suave en hover para la tarjeta de pregunta */
+.pregunta-block:hover {
+  box-shadow: 0 8px 28px rgba(0,0,0,.12);
+}
+
+/* ═══════════ 9. LISTA DE AFINIDAD – ESTILO AVANZADO ═════════════ */
+/* Contenedor de afinidad */
+.afinidad-item {
+  align-items: center;
+  background: rgba(255,255,255,.75);
+  display: flex;
+  font-weight: 600;
+  min-height: 48px;
+  overflow: hidden;
+  padding: 18px 22px;
+  position: relative;
+}
+
+/* Barra de fondo proporcional */
+.afin-bar {
+  background: linear-gradient(
+    to right,
+    rgba(217,4,41,0.08) calc(var(--pct, 0) * 1%),
+    transparent 0
+  );
+  border-radius: 8px;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: background .4s cubic-bezier(.4,1,.6,1);
+  width: 100%;
+  z-index: 0;
+}
+
+/* Barra verde para top */
+.afinidad-item.top .afin-bar {
+  background: linear-gradient(
+    to right,
+    rgba(40,167,69,0.15) calc(var(--pct, 0) * 1%),
+    transparent 0
+  );
+}
+
+/* Nombre del candidato */
+.afin-label {
+  flex: 1;
+  z-index: 1;
+}
+
+/* Badge de afinidad (ajuste de tamaño) */
+.badge-afinidad {
+  border-radius: 16px;
+  font-size: .95rem;
+  padding: 6px 16px;
+  z-index: 1;
+}
+
+/* Botón debajo de la tarjeta */
+.btn-candidatos {
+  background: #fff;
+  border: 2px solid var(--im-red);
+  border-radius: 30px;
+  color: var(--im-red);
+  font-weight: 700;
+  padding: 10px 26px;
+  transition: background .25s, color .25s, transform .2s;
+}
+.btn-candidatos:hover {
+  background: var(--im-red);
+  color: #fff;
+  transform: translateY(-2px);
+}
+

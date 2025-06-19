@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+ {% block extra_css %}
+  <!-- Hoja de estilos propia -->
+  <link rel="stylesheet" href="{% static 'css/como_funciona.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<!-- HERO -->
+<section class="cf-hero d-flex align-items-center">
+  <div class="container text-center">
+    <h1 class="display-5 fw-bold">¿Cómo funciona IdeoMatch?</h1>
+    <p class="lead mb-4">Conecta módulos inteligentes para entregarte tu afinidad política en minutos.</p>
+    <a href="#flujo" class="btn-ideomatch-primary">Ver flujo completo</a>
+  </div>
+</section>
+
+<!-- 1. Módulos principales -->
+<section id="modulos" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="section-title text-center mb-5">Nuestros módulos</h2>
+
+    <div class="row g-4">
+      <!-- Cuestionario -->
+      <div class="col-md-6 col-lg-3">
+        <div class="cf-card text-center h-100">
+          <div class="cf-icon mb-3"><i class="bi bi-question-circle"></i></div>
+          <h5 class="mb-2">Cuestionario</h5>
+          <p class="small">11 preguntas clave sobre economía, sociedad, medioambiente seguridad, etc.</p>
+        </div>
+      </div>
+
+      <!-- Candidatos -->
+      <div class="col-md-6 col-lg-3">
+        <div class="cf-card text-center h-100">
+          <div class="cf-icon mb-3"><i class="bi bi-people-fill"></i></div>
+          <h5 class="mb-2">Base de candidatos</h5>
+          <p class="small">Perfiles de candidatos presidenciales con trayectorias, propuestas y estilo de liderazgo.</p>
+        </div>
+      </div>
+
+      <!-- Algoritmo Afinidad -->
+      <div class="col-md-6 col-lg-3">
+        <div class="cf-card text-center h-100">
+          <div class="cf-icon mb-3"><i class="bi bi-cpu"></i></div>
+          <h5 class="mb-2">Algoritmo de afinidad</h5>
+          <p class="small">Calcula coincidencia ponderada en tiempo real.</p>
+        </div>
+      </div>
+
+      <!-- Dashboard -->
+      <div class="col-md-6 col-lg-3">
+        <div class="cf-card text-center h-100">
+          <div class="cf-icon mb-3"><i class="bi bi-bar-chart-line"></i></div>
+          <h5 class="mb-2">Dashboard & estadísticas</h5>
+          <p class="small">Tendencias nacionales y segmentadas, actualizadas acorde a la comunidad.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Flujo de datos -->
+<section id="flujo" class="py-5">
+  <div class="container">
+    <h2 class="section-title text-center mb-5">Flujo de interacción</h2>
+
+    <div class="cf-flow">
+      <div class="node">Usuario responde<br>Cuestionario</div>
+      <div class="arrow">&rarr;</div>
+
+      <div class="node">Algoritmo calcula<br>% afinidad</div>
+      <div class="arrow">&rarr;</div>
+
+      <div class="node">Resultado + ranking<br>de candidatos</div>
+      <div class="arrow">&rarr;</div>
+
+      <div class="node">Dashboard agrega<br>datos anónimos</div>
+    </div>
+
+    <p class="text-center mt-4 small text-muted">
+      *El sistema guarda respuestas de forma cifrada y sólo publica datos agregados.*
+    </p>
+  </div>
+</section>
+
+<!-- CTA final -->
+<section class="cta-im text-center text-white py-5">
+  <div class="container">
+    <h3 class="fw-bold mb-3">¡Pruébalo ahora y vota informado!</h3>
+    <a href="{% url 'cuestionario' %}" class="btn btn-light btn-lg px-5 shadow-sm">Ir al Cuestionario</a>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'js/como_funciona.js' %}" defer></script>
+{% endblock %}

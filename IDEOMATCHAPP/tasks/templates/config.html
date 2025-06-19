@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/config.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card config-card shadow-lg border-0 p-4 animate__fadeIn">
+
+        <div class="text-center mb-4">
+          <h2 class="text-primary fw-bold">Configuración y Privacidad</h2>
+          <p class="text-muted">Gestiona tus preferencias de cuenta.</p>
+        </div>
+
+        {% for m in messages %}
+          <div class="alert alert-{{ m.tags }} alert-dismissible fade show">
+            {{ m }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endfor %}
+
+        <!-- ─── Formulario Cambiar Correo ─── -->
+        <form method="post" class="mb-4">
+          {% csrf_token %}
+          {{ email_form.non_field_errors }}
+          <div class="mb-3">
+            {{ email_form.new_email.label_tag }}
+            {{ email_form.new_email }}
+            {% for e in email_form.new_email.errors %}
+              <div class="invalid-feedback d-block">{{ e }}</div>
+            {% endfor %}
+          </div>
+          <div class="mb-3">
+            {{ email_form.current_password.label_tag }}
+            {{ email_form.current_password }}
+            {% for e in email_form.current_password.errors %}
+              <div class="invalid-feedback d-block">{{ e }}</div>
+            {% endfor %}
+          </div>
+          <button type="submit" name="email-submit"
+                  class="btn btn-outline-primary w-100">
+            <i class="bi bi-envelope"></i> Actualizar correo
+          </button>
+        </form>
+
+        <hr>
+
+        <!-- ─── Formulario Cambiar Contraseña ─── -->
+        <form method="post" class="mb-4">
+          {% csrf_token %}
+          {{ pwd_form.non_field_errors }}
+          <div class="mb-3">
+            {{ pwd_form.old_password.label_tag }}
+            {{ pwd_form.old_password }}
+            {% for e in pwd_form.old_password.errors %}
+              <div class="invalid-feedback d-block">{{ e }}</div>
+            {% endfor %}
+          </div>
+          <div class="mb-3">
+            {{ pwd_form.new_password1.label_tag }}
+            {{ pwd_form.new_password1 }}
+            {% for e in pwd_form.new_password1.errors %}
+              <div class="invalid-feedback d-block">{{ e }}</div>
+            {% endfor %}
+          </div>
+          <div class="mb-3">
+            {{ pwd_form.new_password2.label_tag }}
+            {{ pwd_form.new_password2 }}
+            {% for e in pwd_form.new_password2.errors %}
+              <div class="invalid-feedback d-block">{{ e }}</div>
+            {% endfor %}
+          </div>
+          <button type="submit" name="pwd-submit"
+                  class="btn btn-outline-danger w-100">
+            <i class="bi bi-key"></i> Actualizar contraseña
+          </button>
+        </form>
+
+        <hr>
+
+        <!-- ─── Formulario Eliminar Cuenta ─── -->
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="delete-password" class="form-label text-danger">
+              Confirmar contraseña para eliminar cuenta:
+            </label>
+            <input type="password" id="delete-password" name="delete-password"
+                   class="form-control" placeholder="Tu contraseña" required>
+          </div>
+          <button type="submit" name="delete-submit"
+                  id="deleteAccountBtn"
+                  class="btn btn-delete w-100">
+            <i class="bi bi-trash3"></i> Eliminar mi cuenta
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'js/config.js' %}"></script>
+{% endblock %}

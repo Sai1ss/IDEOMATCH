@@ -1,0 +1,67 @@
+/* ================================
+   IdeoMatch · como_funciona.css
+   ================================ */
+
+/* ---------- 1. Variables base del proyecto ---------- */
+:root {
+  --cf-red: #d90429;
+  --cf-dark: #2c3e50;
+  --cf-light: #f7f7f7;
+}
+
+/* ---------- 2. Hero principal ---------- */
+.cf-hero {
+  background: linear-gradient(135deg, rgba(44,62,80,.85), rgba(217,4,41,.85)),
+              url("../images/landscape.jpg") center/cover;
+  color: #fff;
+  min-height: 50vh;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+/* ---------- 3. Cards de módulo ---------- */
+.cf-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0,0,0,.08);
+  padding: 2rem 1.5rem;
+  transition: .35s;
+}
+.cf-card:hover {
+  box-shadow: 0 12px 36px rgba(0,0,0,.15);
+  transform: translateY(-6px);
+}
+.cf-icon {
+  color: var(--cf-red);
+  font-size: 2.5rem;
+}
+
+/* ---------- 4. Flujo de pasos ---------- */
+.cf-flow {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  justify-content: center;
+}
+.cf-flow .node {
+  background: #fff;
+  border: 2px solid var(--cf-red);
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.05);
+  font-weight: 500;
+  min-width: 180px;
+  padding: 1.2rem 1.6rem;
+  text-align: center;
+}
+.cf-flow .arrow {
+  color: var(--cf-red);
+  font-size: 2rem;
+}
+
+/* ---------- 5. CTA reutilizable ---------- */
+/* Mismo estilo que el CTA de home */
+.cta-im {
+  background: linear-gradient(135deg, var(--cf-red), #75001d);
+}

@@ -1,0 +1,166 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(20, 20, 20, 0.8)),
+              url('../images/stgo.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+}
+
+@keyframes animatedBackground {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.signin-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 30px;
+}
+
+.signin-wrapper {
+  width: 100%;
+  max-width: 520px;
+}
+
+.signin-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 20px;
+  padding: 50px 40px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+  animation: fadeIn 1s ease-in-out;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+
+.signin-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.45);
+}
+
+.signin-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #d60000;
+  text-align: center;
+  margin-bottom: 35px;
+  letter-spacing: 1px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  color: #555;
+  margin-top: 8px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 18px 14px 44px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 15px;
+  background-color: #f9f9f9;
+  transition: border 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #d60000;
+  outline: none;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(214, 0, 0, 0.1);
+}
+
+.form-group svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  fill: #999;
+}
+
+.btn-login {
+  background: #d60000;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  animation: pulse 2s infinite;
+  transition: background 0.3s ease;
+}
+
+.btn-login:hover {
+  background: #a80000;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(214, 0, 0, 0.4); }
+  70% { box-shadow: 0 0 0 12px rgba(214, 0, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(214, 0, 0, 0); }
+}
+
+.signin-footer {
+  margin-top: 25px;
+  text-align: center;
+  font-size: 15px;
+  color: #333;
+}
+
+.signin-footer a {
+  color: #d60000;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.signin-footer a:hover {
+  color: #a80000;
+}
+
+.error-msg {
+  color: #d9534f;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.input-icon {
+  position: relative;
+}
+
+.input-icon svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  fill: #999;
+  pointer-events: none;
+}
+
+.input-icon input {
+  padding-left: 44px !important; /* deja espacio para el ícono */
+}
+

@@ -1,0 +1,312 @@
+/*  ════════════════════════════════════════
+    IdeoMatch · micuestionario.css  (FULL)
+   ════════════════════════════════════════ */
+
+/* 1.  Colores y fondo de diagonales ------ */
+:root {
+  --im-red: #d90429;
+  --im-red-light: #ff5c5c;
+  --n-900: #1a1a1d;
+  --n-700: #374151;
+  --n-500: #6c757d;
+  --n-200: #e3e3e3;
+  --n-100: #f6f7f8;
+}
+
+body {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,.00) 0 6px,
+      rgba(0,0,0,.02) 6px 12px
+    ),
+    var(--n-100);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul {
+  font-family: "Roboto", "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 2.  Glass card reutilizable ------------- */
+.glass-card {
+  animation: fadeUp .6s ease;
+  backdrop-filter: blur(10px) saturate(140%);
+  background: rgba(255,255,255,.18);
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0,0,0,.18);
+  padding: 2.2rem;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px);}
+  to   { opacity: 1; transform: none;}
+}
+
+/* 3.  Encabezado -------------------------- */
+.user-header {
+  border-left: 6px solid var(--im-red);
+  position: relative;
+}
+
+.header-ribbon {
+  background: radial-gradient(140% 110% at 0 0, rgba(255,255,255,.08) 0%, transparent 55%);
+  border-radius: inherit;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.user-header h1 {
+  color: var(--n-900);
+  font-size: 1.55rem;
+  margin-bottom: .8rem;
+}
+
+/* 4.  Lista “buenas prácticas” ------------ */
+.good-practice {
+  counter-reset: item;
+  margin-left: .2rem;
+}
+
+.good-practice li {
+  counter-increment: item;
+  margin: .35rem 0;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.good-practice li::before {
+  color: var(--im-red);
+  content: counter(item) ".";
+  font-weight: 700;
+  left: 0;
+  position: absolute;
+}
+
+/* 5.  Accordion de preguntas -------------- */
+.accordion {
+  background: #fff;
+  border: 1px solid var(--n-200);
+  border-radius: 8px;
+}
+
+.accordion summary {
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+  padding: 1rem 1.2rem;
+}
+
+.accordion summary::marker,
+.accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion[open] summary {
+  background: var(--n-100);
+}
+
+.answer {
+  border-top: 1px solid var(--n-200);
+  color: var(--n-700);
+  padding: 1rem 1.2rem;
+}
+
+.question-item {
+  border-left: 4px solid var(--im-red);
+}
+
+.q-pill {
+  background: var(--im-red);
+  border-radius: 9999px;
+  color: #fff;
+  display: inline-block;
+  font-size: .85rem;
+  font-weight: 700;
+  margin-right: .65rem;
+  min-width: 26px;
+  padding: .15rem .4rem;
+  text-align: center;
+}
+
+/* 6.  Título de sección ------------------- */
+.sec-title {
+  color: var(--n-700);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 2rem 0 1.2rem;
+}
+
+/* 7.  Lista de afinidades (nueva estética) */
+.lista-afinidades {
+  border: none;
+  padding: 0;
+}
+
+.afinidad-item {
+  align-items: center;
+  background: rgba(255,255,255,.75);
+  display: flex;
+  font-weight: 600;
+  overflow: hidden;
+  padding: 18px 22px;
+  position: relative;
+}
+
+.afin-label {
+  flex: 1;
+  z-index: 1;
+}
+
+/* barra proporcional */
+.afin-bar {
+  background: rgba(217,4,41,.08);
+  content: '';
+  inset: 0;
+  position: absolute;
+  transition: width .4s ease;
+  width: calc(var(--pct) * 1%);
+  z-index: 0;
+}
+
+.afinidad-item.top .afin-bar {
+  background: rgba(40,167,69,.15);
+}
+
+/* badge existente */
+.badge-afinidad {
+  border-radius: 16px;
+  color: #fff;
+  font-size: .95rem;
+  font-weight: 700;
+  min-width: 60px;
+  padding: 6px 16px;
+  text-align: center;
+  z-index: 1;
+}
+
+.badge-afinidad.alto {
+  background: #28a745;
+}
+
+.badge-afinidad.bajo {
+  background: #dc3545;
+}
+
+.badge-afinidad.top {
+  background: #28a745;
+  box-shadow: 0 0 12px rgba(40,167,69,.8);
+  transform: scale(1.05);
+}
+
+/* —— Radar container —— */
+.radar-box {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.05);
+  height: 400px;
+  position: relative;
+  width: 100%;
+}
+
+.radar-box canvas {
+  height: 100%!important;
+  width: 100%!important;
+}
+
+/* 9.  Info-alert -------------------------- */
+.info-alert {
+  background: #eaf6ff;
+  border-left: 4px solid var(--im-red);
+  border-radius: 8px;
+  color: var(--n-700);
+  font-size: .93rem;
+  padding: 1rem 1.25rem;
+}
+
+/* 10. Botones ----------------------------- */
+.glow-btn,
+
+.btn-cand-cta{
+  display:inline-block;
+  background:var(--im-red);
+  color:#fff;
+  font-weight:700;
+  padding:.65rem 1.8rem;
+  border-radius:9999px;
+  box-shadow:0 6px 20px rgba(217,4,41,.45);
+  transition:transform .18s,box-shadow .18s;
+}
+.btn-cand-cta:hover{
+  transform:translateY(-3px);
+  box-shadow:0 9px 28px rgba(217,4,41,.6);
+}
+
+
+.glow-btn {
+  background: var(--im-red);
+  box-shadow: 0 4px 12px rgba(217,4,41,.55);
+  color: #fff;
+}
+
+.glow-btn:hover {
+  box-shadow: 0 7px 18px rgba(217,4,41,.7);
+  transform: translateY(-2px);
+}
+
+.glow-btn::before {
+  animation: shine 3.6s infinite;
+  background: linear-gradient(120deg,transparent,rgba(255,255,255,.55),transparent);
+  content: '';
+  height: 100%;
+  left: -80%;
+  position: absolute;
+  top: 0;
+  transform: skewX(-20deg);
+  width: 45%;
+}
+
+@keyframes shine {
+  from { left: -80% }
+  to   { left: 130% }
+}
+
+
+.btn-candidatos:hover {
+  background: var(--im-red);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* 11. Responsive -------------------------- */
+@media (max-width: 576px) {
+  .glass-card {
+    padding: 1.4rem;
+  }
+  .glow-btn,
+  .btn-candidatos {
+    padding: .5rem 1.4rem;
+  }
+}
+
+/*boton condadiatos:*/

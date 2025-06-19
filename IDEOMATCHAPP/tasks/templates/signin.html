@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="signin-page">
+  <div class="signin-wrapper">
+
+    {# ─── Si hay errores de formulario que no sean de campo (no debería haberlos) ─── #}
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger alert-dismissible fade show mb-4">
+        {{ form.non_field_errors.0 }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    {% endif %}
+
+    <div class="signin-card animated-on-scroll">
+      <h2 class="signin-title">Iniciar sesión</h2>
+      <form method="post" novalidate>
+        {% csrf_token %}
+
+        {# ─── RUT ─── #}
+        <div class="form-group mb-3">
+          <label for="{{ form.username.id_for_label }}">RUT</label>
+          <input
+            type="text"
+            name="{{ form.username.html_name }}"
+            id="{{ form.username.id_for_label }}"
+            value="{{ form.username.value|default_if_none:'' }}"
+            class="form-control {% if form.username.errors %}is-invalid{% elif form.username.value %}is-valid{% endif %}"
+            placeholder="12345678-5"
+            autocomplete="username"
+          >
+          {% if form.username.errors %}
+            <div class="invalid-feedback">
+              {{ form.username.errors.0 }}
+            </div>
+          {% endif %}
+        </div>
+
+        {# ─── Contraseña ─── #}
+        <div class="form-group mb-4">
+          <label for="{{ form.password.id_for_label }}">Contraseña</label>
+          <input
+            type="password"
+            name="{{ form.password.html_name }}"
+            id="{{ form.password.id_for_label }}"
+            class="form-control {% if form.password.errors %}is-invalid{% endif %}"
+            placeholder="••••••••"
+            autocomplete="current-password"
+          >
+          {% if form.password.errors %}
+            <div class="invalid-feedback">
+              {{ form.password.errors.0 }}
+            </div>
+          {% endif %}
+        </div>
+
+        <button type="submit" class="btn-login w-100">Ingresar</button>
+
+        {# ─── Enlace “¿Olvidaste tu contraseña?” ─── #}
+        <div class="text-end mt-2">
+          <a href="{% url 'password_reset' %}" class="small text-decoration-none">
+            ¿Olvidaste tu contraseña?
+          </a>
+        </div>
+
+        <div class="signin-footer mt-3">
+          ¿No tienes cuenta?
+          <a href="{% url 'signup' %}">Regístrate aquí</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'js/signin.js' %}"></script>
+{% endblock %}

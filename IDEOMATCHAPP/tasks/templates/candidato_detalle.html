@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/candidatos.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="py-5 container">
+  <div class="row">
+    <div class="col-md-4">
+      <img src="{{ candidato.imagen.url }}" class="img-fluid rounded" alt="{{ candidato.nombre }}">
+    </div>
+    <div class="col-md-8">
+      <h2>{{ candidato.nombre }}</h2>
+      <p class="text-muted">{{ candidato.partido }}</p>
+      <hr>
+      <h5>Biografía</h5>
+      <p>{{ candidato.biografia|linebreaks }}</p>
+      {% if candidato.trayectoria %}
+        <h5>Trayectoria</h5>
+        <p>{{ candidato.trayectoria|linebreaks }}</p>
+      {% endif %}
+      {% if candidato.propuestas %}
+        <h5>Propuestas</h5>
+        <p>{{ candidato.propuestas|linebreaks }}</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+
+{% block script_extra %}
+  <script src="{% static 'js/candidato_detalle.js' %}"></script>
+{% endblock %}

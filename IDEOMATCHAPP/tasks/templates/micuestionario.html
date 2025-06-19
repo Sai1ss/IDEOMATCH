@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/micuestionario.css' %}">
+{% endblock %}
+
+{% block title %}Mi Cuestionario & Afinidades – IdeoMatch{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+
+  {# ══════════ ENCABEZADO ─ guía rápida ══════════ #}
+  <header class="user-header glass-card mb-5 shadow-lg position-relative overflow-hidden">
+    <div class="header-ribbon"></div>   {# decoración ligera #}
+
+    <h1 class="mb-3">
+      <i class="bi bi-person-bounding-box me-2"></i>
+      Mi Cuestionario <span class="d-inline d-md-none"><br></span>&amp; Afinidades
+    </h1>
+
+    <ul class="good-practice">
+      <li><strong>Revisa</strong> tus respuestas más recientes.</li>
+      <li><strong>Descubre</strong> tu afinidad con cada candidato.</li>
+      <li><strong>Compárate</strong> con la comunidad IdeoMatch.</li>
+    </ul>
+  </header>
+
+  {# ══════════ ÚLTIMAS RESPUESTAS ═════════════════ #}
+  <h2 class="sec-title">Últimas respuestas</h2>
+
+  {% if respuestas %}
+    {% for r in respuestas %}
+      <details class="accordion mb-3 question-item">
+        <summary>
+          <span class="q-pill">{{ forloop.counter }}</span>
+          {{ r.pregunta.texto }}
+        </summary>
+        <div class="answer">
+          {{ r.alternativa.texto }}
+        </div>
+      </details>
+    {% endfor %}
+  {% else %}
+    <div class="text-muted">Aún no respondes preguntas.</div>
+  {% endif %}
+
+  {# ══════════ AFINIDAD + RADAR ═══════════════════ #}
+  {% if afinidades %}
+    {% with top_pct=afinidades.0.porcentaje %}
+      <h2 class="sec-title mt-5">Afinidad con Candidatos</h2>
+
+      <div class="row g-4 align-items-stretch">
+        <!-- Lista ordenada -->
+        <div class="col-lg-6">
+          <ul class="list-group lista-afinidades">
+            {% for a in afinidades %}
+              <li class="afinidad-item {% if a.porcentaje == top_pct %}top{% endif %}"
+                  style="--pct:{{ a.porcentaje|default:'0'|floatformat:'1'|cut:','|cut:' ' }};">
+                <span class="afin-label">{{ a.candidato.nombre }}</span>
+                <span class="afin-bar"></span>
+                <span class="badge-afinidad
+                  {% if a.porcentaje == top_pct %}top
+                  {% elif a.porcentaje >= 50 %}alto
+                  {% else %}bajo{% endif %}">
+                  {{ a.porcentaje|floatformat:"1" }} %
+                </span>
+              </li>
+            {% endfor %}
+          </ul>
+          
+          <li class="list-group-item text-muted mt-3" style="list-style:none;">
+            <i class="bi bi-info-circle me-1"></i>
+            Tu afinidad se calcula en base a tus respuestas más recientes.
+          </li>
+
+          
+          <div class="text-center mt-4">
+            <a href="{% url 'candidatos' %}" class="btn-cand-cta">
+                  <i class="bi bi-people-fill me-1"></i>
+                  Ver trayectoria de todos los candidatos
+            </a>
+          </div>
+          
+        </div>
+
+        <!-- Radar + info + CTA -->
+        <div class="col-lg-6 d-flex flex-column">
+          <div class="info-alert mb-3">
+            <i class="bi bi-info-circle me-1"></i>
+            Este gráfico <em>radial individual</em> muestra tu coincidencia con
+            cada candidato: mientras más se extienda un vértice, mayor afinidad.
+          </div>
+
+          <div class="radar-box flex-grow-1 mb-4">
+            <canvas id="radarChart"></canvas>
+          </div>
+
+          <div class="text-center mt-auto">
+            <a href="{% url 'dashboard' %}" class="glow-btn">
+              Ver análisis de la comunidad&nbsp;
+              <i class="bi bi-bar-chart-line ms-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    {% endwith %}
+  {% else %}
+    <div class="text-muted mt-5">Aún no tienes afinidades registradas.</div>
+  {% endif %}
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+  {{ radar_data|json_script:"radar-data" }}
+
+  <!-- Chart.js v4 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <!-- Lógica del radar -->
+  <script src="{% static 'js/micuestionario.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,95 @@
+:root {
+  --ideomatch-red: #d90429;
+  --ideomatch-dark: #2c3e50;
+  --ideomatch-light-gray: #e0e0e0;
+  --ideomatch-text-light: #ffffff;
+  --ideomatch-text-muted: #7f8c8d;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--ideomatch-light-gray);
+}
+
+.perfil-fondo {
+  background: url("../images/plaza_armas.jpg") center/cover no-repeat;
+  backdrop-filter: blur(8px);
+  padding-bottom: 50px;
+}
+
+.profile-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.profile-card h2 {
+  color: var(--ideomatch-red);
+  letter-spacing: 1px;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--ideomatch-dark);
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.form-label:hover {
+  color: var(--ideomatch-red);
+  transform: translateX(2px);
+}
+
+.form-control,
+.form-select {
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  padding: 12px 16px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--ideomatch-red);
+  box-shadow: 0 0 10px rgba(217, 4, 41, 0.3);
+}
+
+.btn-ideomatch-primary {
+  background-color: var(--ideomatch-red);
+  color: white;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn-ideomatch-primary:hover {
+  transform: translateY(-3px);
+  background-color: #b0031f;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
+}
+
+.toast {
+  animation: fadeInUp 0.6s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-card {
+    padding: 1.5rem 1rem;
+  }
+}
